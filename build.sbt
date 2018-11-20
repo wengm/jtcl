@@ -15,9 +15,6 @@ scalacOptions ++= Seq(
   "-feature",
 )
 
-// Publishing Options
-publishArtifact in (Compile, packageDoc) in ThisBuild := false
-
 // Library Dependencies
 libraryDependencies += "org.codehaus.janino" % "janino" % "3.0.11"
 
