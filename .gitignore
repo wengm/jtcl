@@ -4,3 +4,4 @@ tjcsrc.jar
 *.iml
 .idea
 .settings
+project/target
