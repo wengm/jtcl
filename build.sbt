@@ -22,8 +22,8 @@ publishArtifact in (Compile, packageDoc) in ThisBuild := false
 libraryDependencies += "org.codehaus.janino" % "janino" % "3.0.11"
 
 // add license files to jar
-mappings in (Compile, packageBin) += { (baseDirectory.value / "src" / "main" / "licenses" / "license.amd") -> "license.amd" }
-mappings in (Compile, packageBin) += { (baseDirectory.value / "src" / "main" / "licenses" / "license.itcl") -> "license.itcl" }
-mappings in (Compile, packageBin) += { (baseDirectory.value / "src" / "main" / "licenses" / "license.tcllib") -> "license.tcllib" }
-mappings in (Compile, packageBin) += { (baseDirectory.value / "src" / "main" / "licenses" / "license.terms") -> "license.terms" }
-mappings in (Compile, packageBin) += { (baseDirectory.value / "src" / "main" / "licenses" / "license.ucb") -> "license.ucb" }
+mappings in (Compile, packageBin) += (baseDirectory.value / "src" / "main" / "licenses" / "license.amd") -> "license.amd"
+mappings in (Compile, packageBin) += (baseDirectory.value / "src" / "main" / "licenses" / "license.itcl") -> "license.itcl"
+mappings in (Compile, packageBin) += (baseDirectory.value / "src" / "main" / "licenses" / "license.tcllib") -> "license.tcllib"
+mappings in (Compile, packageBin) += (baseDirectory.value / "src" / "main" / "licenses" / "license.terms") -> "license.terms"
+mappings in (Compile, packageBin) += (baseDirectory.value / "src" / "main" / "licenses" / "license.ucb") -> "license.ucb"
