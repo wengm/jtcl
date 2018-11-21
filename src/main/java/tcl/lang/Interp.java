@@ -8,12 +8,7 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownServiceException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.Map;
+import java.util.*;
 
 import tcl.lang.channel.Channel;
 import tcl.lang.channel.FileChannel;
@@ -1116,6 +1111,80 @@ public class Interp extends EventuallyFreed {
 	 *
 	 *-----------------------------------------------------------------
 	 */
+
+	public final HashSet<String> listVars() {
+
+		String varName, pattern, simplePattern;
+		Var var;
+		Namespace ns;
+		Namespace globalNs = Namespace.getGlobalNamespace(this);
+		Namespace currNs = Namespace.getCurrentNamespace(this);
+		TclObject list, elemObj;
+		boolean specificNsInPattern = false; // Init. to avoid compiler warning.
+
+		// Get the pattern and find the "effective namespace" in which to
+		// list variables. We only use this effective namespace if there's
+		// no active Tcl procedure frame.
+
+		simplePattern = null;
+		ns = currNs;
+		specificNsInPattern = false;
+
+		// If the namespace specified in the pattern wasn't found, just return.
+
+		if (ns == null) {
+			return new HashSet<String>();
+		}
+
+		list = TclList.newInstance();
+
+		HashSet<String> result = new HashSet<String>();
+		if ((this.varFrame == null) || !this.varFrame.isProcCallFrame) {
+			// There is no frame pointer, the frame pointer was pushed only
+			// to activate a namespace, or we are in a procedure call frame
+			// but a specific namespace was specified. Create a list containing
+			// only the variables in the effective namespace's variable table.
+
+			for (Iterator iter = ns.varTable.entrySet().iterator(); iter.hasNext();) {
+				Map.Entry entry = (Map.Entry) iter.next();
+				varName = (String) entry.getKey();
+				var = (Var) entry.getValue();
+
+				if (!var.isVarUndefined() || var.isVarNamespace()) {
+					result.add(Var.getVariableFullName(this, var));
+				}
+			}
+
+			// If the effective namespace isn't the global :: namespace, and a
+			// specific namespace wasn't requested in the pattern (i.e., the
+			// pattern only specifies variable names), then add in all global ::
+			// variables that match the simple pattern. Of course, add in only
+			// those variables that aren't hidden by a variable in the effective
+			// namespace.
+
+			if (ns != globalNs) {
+				for (Iterator iter = globalNs.varTable.entrySet().iterator(); iter.hasNext();) {
+					Map.Entry entry = (Map.Entry) iter.next();
+					varName = (String) entry.getKey();
+					var = (Var) entry.getValue();
+
+					if (!var.isVarUndefined() || var.isVarNamespace()) {
+
+						// Skip vars defined in current namespace
+						if (ns.varTable.get(varName) == null) {
+							result.add(varName);
+						}
+					}
+				}
+			}
+		} else {
+			for(Object entry: this.varFrame.getVarNames()) {
+				result.add(entry.toString());
+			}
+		}
+		return result;
+	}
+
 
 	/**
 	 * Set the value of a variable
