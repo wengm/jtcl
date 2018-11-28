@@ -15,6 +15,7 @@ scalacOptions ++= Seq(
   "-Yno-adapted-args",
   "-feature",
 )
+javacOptions ++= Seq("-source", "1.8", "-target", "1.8") 
 
 // Library Dependencies
 libraryDependencies += "org.codehaus.janino" % "janino" % "3.0.11"
