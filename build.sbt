@@ -1,6 +1,6 @@
 name := "jtcl"
 organization := "com.github.dronox"
-version := "2.9.2"
+version := "2.9.3"
 
 publishTo := sonatypePublishTo.value
 crossPaths := false
@@ -8,15 +8,9 @@ useGpg := true
 
 // Compiler Options
 scalaVersion := "2.12.7"
-scalacOptions ++= Seq(
-  "-encoding", "UTF-8",
-  "-unchecked",
-  "-deprecation",
-  "-Xfuture",
-  "-Yno-adapted-args",
-  "-feature",
-)
-javacOptions ++= Seq("-source", "1.8", "-target", "1.8") 
+val javaCompilerOptions = Seq("-source", "1.8", "-target", "1.8")
+javacOptions in (Compile, compile) ++= javaCompilerOptions
+javacOptions in (Test) ++= javaCompilerOptions
 
 // Library Dependencies
 libraryDependencies += "org.codehaus.janino" % "janino" % "3.0.11"
