@@ -1,9 +1,10 @@
 name := "jtcl"
 organization := "com.github.dronox"
-version := "2.9.1"
+version := "2.9.2"
 
 publishTo := sonatypePublishTo.value
 crossPaths := false
+useGpg := true
 
 // Compiler Options
 scalaVersion := "2.12.7"
