@@ -1,6 +1,6 @@
 name := "jtcl"
 organization := "com.github.dronox"
-version := "2.9.3"
+version := "2.9.4"
 
 publishTo := sonatypePublishTo.value
 crossPaths := false

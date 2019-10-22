@@ -250,7 +250,9 @@ public class Parser {
 					parse = parseTokens(script_array, script_index, TYPE_QUOTE,
 							parse);
 					if (parse.result != TCL.OK) {
-						throw new TclException(parse.result);
+						TclException e = new TclException(parse.result);
+						e.errIndex = script_index;
+						throw e;
 					}
 					if (parse.string[parse.termIndex] != '"') {
 						parse.termIndex = script_index - 1;
@@ -343,7 +345,9 @@ public class Parser {
 					parse = parseTokens(script_array, script_index, TYPE_SPACE
 							| terminators, parse);
 					if (parse.result != TCL.OK) {
-						throw new TclException(parse.result);
+						TclException e = new TclException(parse.result);
+						e.errIndex = script_index;
+						throw e;
 					}
 					script_index = parse.termIndex;
 				}
@@ -1173,7 +1177,9 @@ public class Parser {
 						null, 0, nested);
 
 				if (parse.result != TCL.OK) {
-					throw new TclException(parse.result);
+					TclException e = new TclException(parse.result);
+					e.errIndex = src_index;
+					throw e;
 				}
 
 				// The test on noEval is temporary. As soon as the new expr
