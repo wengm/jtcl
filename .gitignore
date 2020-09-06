@@ -5,3 +5,4 @@ tjcsrc.jar
 .idea
 .settings
 project/target
+*.swp

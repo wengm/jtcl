@@ -119,7 +119,7 @@ public class ReadCmd implements Command {
 		} catch (IOException e) {
 			throw new TclRuntimeError(
 					"ReadCmd.cmdProc() Error: IOException when reading "
-							+ chan.getChanName());
+							+ chan.getChanName(), e);
 		}
 	}
 
