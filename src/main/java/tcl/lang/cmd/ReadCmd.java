@@ -6,7 +6,7 @@
  * See the file "license.terms" for information on usage and
  * redistribution of this file, and for a DISCLAIMER OF ALL
  * WARRANTIES.
- * 
+ *
  * RCS: @(#) $Id: ReadCmd.java,v 1.8 2003/03/08 03:42:44 mdejong Exp $
  *
  */
@@ -35,7 +35,7 @@ public class ReadCmd implements Command {
     /**
      * This procedure is invoked to process the "read" Tcl command. See the user
      * documentation for details on what it does.
-     * 
+     *
      * @param interp
      *            the current interpreter.
      * @param argv
@@ -85,9 +85,9 @@ public class ReadCmd implements Command {
                 // this is a wierd error, but that's what io-32.3, iocmd-4.9 tests want
                 throw new TclException(interp, "bad argument \""+argv[i]+"\": should be \"nonewline\"");
             }
-            
+
         }
-    
+
         try {
             if (chan.getEncoding() == null && ! noNewline) {
                 result = TclByteArray.newInstance();
@@ -126,7 +126,7 @@ public class ReadCmd implements Command {
     /**
      * A unique error msg is printed for read, therefore dont call this instead
      * of the standard TclNumArgsException().
-     * 
+     *
      * @param interp
      *            the current interpreter.
      * @param cmd
