@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.dronox</groupId>
+    <groupId>tcl.lang</groupId>
     <artifactId>jtcl</artifactId>
     <packaging>jar</packaging>
     <description>jtcl</description>
-    <url>https://github.com/dronox/jtcl</url>
     <version>2.9.4</version>
     <licenses>
         <license>
@@ -14,35 +13,11 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <name>jtcl</name>
-    <organization>
-        <name>com.github.dronox</name>
-        <url>https://github.com/dronox/jtcl</url>
-    </organization>
-    <scm>
-        <url>https://github.com/dronox/jtcl</url>
-        <connection>git@github.com:dronox/jtcl.git</connection>
-    </scm>
-    <developers>
-        <developer>
-            <id>dronox</id>
-            <name>dronox</name>
-            <email>dustin.peterson@dronox.de</email>
-            <url>https://github.com/dronox</url>
-        </developer>
-    </developers>
-    <dependencies>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.12.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.janino</groupId>
-            <artifactId>janino</artifactId>
-            <version>3.0.11</version>
-        </dependency>
-    </dependencies>
+    <url>https://github.com/jtcl-project/jtcl</url>
     <build>
         <plugins>
             <plugin>
@@ -50,10 +25,18 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

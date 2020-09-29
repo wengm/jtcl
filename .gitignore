@@ -1,6 +1,5 @@
 target/
-tjc.jar
-tjcsrc.jar
+*.jar
 *.iml
 .idea
 .settings
